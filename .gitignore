@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-
+/resource
 
 # local env files
 .env.local

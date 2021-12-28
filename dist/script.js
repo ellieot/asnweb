@@ -225,31 +225,37 @@ const waitForImages = () => {
 		pointerEvents: "none",
 		opacity: "0",
 	});
+	gsap.timeline()
+		.to(".loading__wrapper", {
+		duration: 0.8,
+		opacity: 0,
+		pointerEvents: "none",
+	})
+		.call(() => init());
+	// images.forEach((image) => {
+	// 	imagesLoaded(image, (instance) => {
+	// 		if (instance.isComplete) {
+	// 			loadedImages++;
+	// 			let loadProgress = loadedImages / totalImages;
 
-	images.forEach((image) => {
-		imagesLoaded(image, (instance) => {
-			if (instance.isComplete) {
-				loadedImages++;
-				let loadProgress = loadedImages / totalImages;
+	// 			gsap.to(loaderEl, {
+	// 				duration: 1,
+	// 				scaleX: loadProgress,
+	// 				backgroundColor: `hsl(${loadProgress * 120}, 100%, 50%`,
+	// 			});
 
-				gsap.to(loaderEl, {
-					duration: 1,
-					scaleX: loadProgress,
-					backgroundColor: `hsl(${loadProgress * 120}, 100%, 50%`,
-				});
-
-				if (totalImages == loadedImages) {
-					gsap.timeline()
-						.to(".loading__wrapper", {
-						duration: 0.8,
-						opacity: 0,
-						pointerEvents: "none",
-					})
-						.call(() => init());
-				}
-			}
-		});
-	});
+	// 			if (totalImages == loadedImages) {
+	// 				gsap.timeline()
+	// 					.to(".loading__wrapper", {
+	// 					duration: 0.8,
+	// 					opacity: 0,
+	// 					pointerEvents: "none",
+	// 				})
+	// 					.call(() => init());
+	// 			}
+	// 		}
+	// 	});
+	// });
 };
 
 waitForImages();
